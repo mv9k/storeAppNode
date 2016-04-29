@@ -17,50 +17,50 @@ app.set('json spaces', 2);
 app.use('/', express.static(__dirname + '/client'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
-//app.get('/users', function(req, res) {
-//	listAllStudents(res);
-//});
-//
-//app.get('/user/:id', function(req, res) {
-//	getStudentById(req.params.id, res);
-//});
-//
-//app.put('/fav/:id', function(req, res) {
-//	var classId = req.body.classId;
-//	var grade = req.body.grade;
-//
-//	gradeEditAdd(req.params.id, classId, grade, res);
-//
-//});
-//
-//app.delete('/user/:id', function(req, res) {
-//	delStudentById(req.params.id, res);
-//});
-//
-//app.delete('/fav/:id', function(req, res) {
-//	var classId = req.body.classId;
-//	delGrade(req.params.id, classId, res);
-//});
-//
-//app.post('/users', function(req, res) {
-//	//var id = getNewId();
-//	var favs = req.body.favs;
-//	console.log(favs);
-//
-//	insertStudent(favs, res);
-//
-//	//res.json(req.body);
-//});
-//
-//app.post('/class', function(req, res) {
-//	var id = getNewId();
-//	var name = req.body.name;
-//	console.log(id, name);
-//
-//	insertClass(id, name, res);
-//
-//	//res.json(req.body);
-//});
+app.get('/users', function(req, res) {
+	listAllStudents(res);
+});
+
+app.get('/user/:id', function(req, res) {
+	getStudentById(req.params.id, res);
+});
+
+app.put('/fav/:id', function(req, res) {
+	var classId = req.body.classId;
+	var grade = req.body.grade;
+
+	gradeEditAdd(req.params.id, classId, grade, res);
+
+});
+
+app.delete('/user/:id', function(req, res) {
+	delStudentById(req.params.id, res);
+});
+
+app.delete('/fav/:id', function(req, res) {
+	var classId = req.body.classId;
+	delGrade(req.params.id, classId, res);
+});
+
+app.post('/users', function(req, res) {
+	//var id = getNewId();
+	var favs = req.body.favs;
+	console.log(favs);
+
+	insertStudent(favs, res);
+
+	//res.json(req.body);
+});
+
+app.post('/class', function(req, res) {
+	var id = getNewId();
+	var name = req.body.name;
+	console.log(id, name);
+
+	insertClass(id, name, res);
+
+	//res.json(req.body);
+});
 
 
 
