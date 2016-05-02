@@ -289,7 +289,7 @@ function getNewId() {
 
 //console.log(getNewId());
 
-var port = 3343;
-app.listen(port, function() {
+//var port = 3343;
+app.listen(process.env.PORT, function() {
 	console.log(`App listening on port ${port}...`);
 });
