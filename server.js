@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.set('json spaces', 2);
 
-//app.use('/', express.static(__dirname + '/client'));
+app.use('/', express.static(__dirname + '/client'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 app.get('/users', function(req, res) {
@@ -289,7 +289,7 @@ function getNewId() {
 
 console.log(getNewId());
 
-//var port = 3343;
-//app.listen(port, function() {
-//	console.log(`App listening on port ${port}...`);
-//});
+var port = 3343;
+app.listen(port, function() {
+	console.log(`App listening on port ${port}...`);
+});
