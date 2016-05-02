@@ -287,7 +287,7 @@ function getNewId() {
 	return uuid.v4();
 }
 
-console.log(getNewId());
+//console.log(getNewId());
 
 var port = 3343;
 app.listen(port, function() {
