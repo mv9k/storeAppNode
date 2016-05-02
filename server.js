@@ -17,9 +17,9 @@ app.set('json spaces', 2);
 app.use('/', express.static(__dirname + '/client'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
-app.get('/users', function(req, res) {
-	listAllStudents(res);
-});
+//app.get('/users', function(req, res) {
+//	listAllStudents(res);
+//});
 
 app.get('/user/:id', function(req, res) {
 	getStudentById(req.params.id, res);
