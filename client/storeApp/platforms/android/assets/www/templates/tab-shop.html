@@ -1,0 +1,54 @@
+<ion-view view-title="Shop" style="text-align: center;">
+  <ion-nav-buttons side="secondary">
+    <button class="button" ng-click="openModal()">
+      <i class="ion ion-information-circled infoIcon"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item type="item-text-wrap" class="nga-default nga-fade">
+        <label class="item item-input txtBord" id="productSearch">
+          <input class="txtBord" type="text" placeholder="Search" name="test" ng-model="sc.searchText"/>
+        </label>
+        <button class="button button-block button-outline button-calm" ng-click="sc.getProducts()">
+          Search
+        </button>
+        <button class="button button-block button-outline button-balanced" ng-click="sc.getAssignedProducts()">
+          Get Your Products
+        </button>
+      </ion-item>
+
+      <ion-item ng-repeat="product in sc.items track by $index" class="nga-default nga-fade item item-text-wrap">
+        <div class="animated pulse">
+            <i class="ion-chevron-right chevronRight"></i>
+            <div class="productTitle item-text-wrap"><h3>{{product.name}}</h3></div>
+            <br>
+<<<<<<< HEAD:storeApp/platforms/ios/www/templates/tab-shop.html
+            <a href="#/tab/dash/{{sc.product.itemId}}" ng-click="sc.getDetail(product)">
+              <img ng-src="{{product.mediumImage}}" class="itemImg">
+            </a>
+              <br>
+=======
+            <img ng-src="{{product.mediumImage}}" class="itemImg"><br>
+>>>>>>> gmoney:storeApp/platforms/android/assets/www/templates/tab-shop.html
+            <button class="button button-balanced buyButton" ng-click="sc.addToCart(product); buyToggle = !buyToggle" ng-hide="buyToggle">
+              <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice | number:2 }} &nbsp; <i class="ion-bag"></i></span>
+            </button>
+            <span class="button button-balanced" ng-show="buyToggle">
+              <span class="productDetails"><i class="ion-social-usd"></i> Added! &nbsp; <i class="ion-bag"></i></span>
+            </span>
+            <a class="button button-calm" ng-click="sc.getDetail(product)" href="#/tab/dash/{{sc.product.itemId}}">
+              <span class="productDetails"> Details </span>
+            </a>
+            <br>
+            <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
+            <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product)">
+              <i class="ion-ios-heart-outline largerIcon favAnim off" ng-hide="product.isFav" ng-animate=" 'favAnim' "></i>
+              <i class="ion-ios-heart largerIcon favAnim on" ng-show="product.isFav" ng-animate=" 'favAnim' "></i>
+            </ion-option-button>
+        </div>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,31 @@
+<ion-view view-title="Cart">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="product in cc.cartProducts track by $index">
+        <div class="card">
+          <div class="productTitle item item-text-wrap"><h3>{{product.name}}</h3></div>
+          <!--<div class="item item-text-wrap">{{product.shortDescription}}</div>-->
+          <div class="row" style="text-align: center;">
+          <img  class="col" ng-src="{{product.thumbnailImage}}">
+          <div class="col col-30" style="margin-top: 40px;">
+          <span style="color:orangered;">{{product.numReviews}}</span>
+          <img ng-src="{{product.customerRatingImage}}">
+          </div>
+          <span class="col col-30" style="color:green; font-size:18pt; margin-top: 40px;">${{product.salePrice}}</span>
+          </div>
+        </div>
+        <ion-option-button class="button-assertive sizeUp" ng-click="cc.remove($index)"><i class="ion-close-circled largerIcon"></i></ion-option-button>
+      </ion-item>
+      <div class="card">
+        <ion-item class="item item-wrap-text" style="padding-top:10px;">
+          <div>
+            <span class="cartpadding" style="color:green; font-size:24pt;">Total: &nbsp; &nbsp; ${{cc.actualPrice | number:2}}</span>
+            <br>
+            <button ng-click="cc.buyIt()" class="button button-block button-positive button-outline"  href="http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D{{product.itemId}}%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi" style="padding: 0;">Purchase!</button>
+
+          </div>
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

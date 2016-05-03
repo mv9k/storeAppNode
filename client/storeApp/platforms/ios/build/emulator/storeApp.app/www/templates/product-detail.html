@@ -1,0 +1,29 @@
+<ion-view view-title="Product Detail" style="text-align: center;">
+  <ion-content class="padding">
+    <div class="productDetailBG">
+    <h3>{{dc.product.name}}</h3>
+      <div class="item item-text-wrap">
+      <ion-slide-box on-slide-changed="slideHasChanged($index)">
+        <ion-slide ng-repeat="image in dc.product.imageEntities track by $index">
+          <div><img ng-src="{{dc.product.imageEntities[$index].mediumImage}}"></div>
+          <br>
+          <br>
+        </ion-slide>
+      </ion-slide-box>
+      </div>
+    <br>
+    <button class="button button-balanced buyButton" ng-click="dc.addToCart(dc.product); buyToggle = !buyToggle" ng-hide="buyToggle">
+      <span class="productDetails"><i class="ion-social-usd"></i> {{dc.product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
+    </button>
+    <span class="button button-balanced" ng-show="buyToggle">
+      <span class="productDetails"><i class="ion-social-usd"></i> Added! &nbsp; <i class="ion-bag"></i></span>
+    </span>
+    <br><br>
+    <div style="text-align: left;">
+      <p>
+        {{dc.product.shortDescription}}
+      </p>
+    </div>
+    </div>
+  </ion-content>
+</ion-view>

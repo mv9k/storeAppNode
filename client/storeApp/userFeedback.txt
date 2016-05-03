@@ -1,0 +1,30 @@
+Adam:
+'remove the buy button from every item and make one that buys all the items'
+
+Brinley:
+'Create account is confusing make create account bring you to another page that lets you create one'
+
+Sierra:
+"It needs to tell you what the problem is every time the email box lights up red"
+
+Colen:
+"Looks really great but it's really easy to break it"
+
+==================
+Claire :
+
+"There are a few things I would change about this App to make it look more professional and get more sales;  At the log in screen, I would put slight indentations of an outlined box on both the ‘Email’ and ‘Password’ sections, so it appears more ‘user friendly’.
+
+When I click ‘Create an Account’, there is no indication that I have any go-ahead to actually create an account, it just refers me back to the ‘Log in’ point stating “ERROR: The specified email is invalid”. However when I click ‘Create an account’ after putting in my info at the ‘Log in’ section, it magically creates an account. I would definitely change that so when you click on ‘Create an Account’, it switches to a new page for that specific task.
+
+Purely for looks, when you log into your account, up the top, there is text saying “Welcome ____ !”. The black text directly on the background does not fit with the app and makes it look unprofessional. I would put it in a white box like everything else along with the green logo to have a sense of flow to the page.
+
+Once you enter into a product list, the only thing I would change is have it so you can click on an image and it will either take you to the details page, or pop up a quick-view with a clear ‘X’ to get out of it.
+
+When you enter into a products details, there is no way to view any customer reviews. That is an absolutely vital part of getting sales. People want to see what others have said about the product of interest. So, there needs to be a section of reviews on the details page.
+
+One last thing on the ‘Details’ page, the text about most products is just a sales pitch with no actual information about the product. Im not sure if thats an issue with Walmart’s marketing or something with the API, but if there is any power to change the text something bluntly informative, i’d recommend that.
+
+Overall, the App is simple, has easy to use navigation which is always a huge yes, and It’s also not crowded with features/junk. Given the small speck of time to start & finish the project, I am impressed with the design choice and the presentation. In my books it has minimal work needed to shine it up to become marketable. Well done!!"
+
+==================

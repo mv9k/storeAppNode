@@ -1,0 +1,157 @@
+/* Empty. Add your own CSS if you like */
+.bord{
+  border-radius: 10px;
+  border: solid white 3px;
+  padding: 10px;
+  background-color: white;
+}
+
+.txtBord{
+  border: solid 1px;
+  border-color: white white lightgrey white;
+  font-size: x-large;
+  margin-bottom: 1px;
+  padding: 0 0 0 16px;
+}
+.newCategoryText{
+  text-align: left;
+  border: solid white 1px;
+  font-size: x-large;
+  margin-bottom: 1px;
+  background-color: white; !important
+  border-radius: 0; !important
+}
+.item-input-inset .item-input-wrapper input {
+  padding-left: 4px;
+  height: 29px;
+  background: white;
+  line-height: 18px;
+  border-radius: 0;
+}
+.profileImg{
+  width: 50px;
+  border-radius: 100%;
+}
+
+.alert{
+  background-color: #b2302f;
+}
+.categoryItem{
+  height: 50px;
+  width: 100%;
+  border: solid lightgrey 1px;
+}
+
+.item-complex .item-content, .item-radio .item-content {
+  position: relative;
+  z-index: 2;
+  padding: 16px 16px 16px 16px;
+  border: none;
+  background-color: #fff;
+}
+.button.button-balanced {
+  border-color: transparent;
+  background-color: #0c824c;
+  color: #fff;
+}
+.sizeUp {
+  -webkit-box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+}
+.productDetails {
+  font-size: 24px;
+}
+.productTitle {
+  text-align: center;
+}
+.buyButton {
+  background-color: #00e583 !important;
+}
+.productRating {
+  padding: 15px;
+  /*display: inline-block !important;*/
+}
+.largerImg {
+  width: 29%;
+}
+i.largerIcon {
+  font-size: 50px !important;
+}
+.delButton {
+  border: 1px solid black;
+  position: absolute !important;
+  top:0 !important;
+  right:0 !important;
+  margin-top: 1px;
+  margin-right: 2px;
+}
+.delOptionButton {
+  -webkit-box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+}
+.chevronRight {
+  position: absolute;
+  top: 50%;
+  right: 19px;
+}
+.testClass {
+  background-color: black !important;
+}
+.cardNoBorder {
+  border: none !important;
+}
+.itemImg {
+  max-width: 100%;
+}
+.infoImg {
+  max-width: 50%;
+}
+.infoIcon {
+  padding: 2px;
+  font-size: 25px !important;
+}
+.favAnim {
+  color: white !important;
+}
+.on {
+  color: #9d1dff !important;
+}
+.off {
+  color: white !important;
+}
+
+.favAnim-show-setup, .favAnim-hide-setup {
+  -webkit-transition:all linear 0.3s;
+  -moz-transition:all linear 0.3s;
+  -ms-transition:all linear 0.3s;
+  -o-transition:all linear 0.3s;
+  transition:all linear 0.3s;
+}
+
+.cartpadding {
+  padding: 20px 10px 10px 10px !important;
+  bottom: 0 !important;
+}
+.customBg .customBg .pane, .customBg ion-content {
+  -webkit-box-shadow: inset 0px 0px 34px -16px rgba(0,0,0,0.25);
+  -moz-box-shadow: inset 0px 0px 34px -16px rgba(0,0,0,0.25);
+  box-shadow: inset 0px 0px 34px -16px rgba(0,0,0,0.25);
+  background: #86d7e0; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, #86d7e0 0%, #6c80b7 100%); /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover, #86d7e0 0%,#6c80b7 100%); /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, #86d7e0 0%,#6c80b7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#86d7e0', endColorstr='#6c80b7',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.customBg ion-content .productDetailBG {
+  background-color: white !important;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/*.customBg div.bord {*/
+  /*background-color: rgba(2, 134, 157, 0.29) !important;*/
+  /*border: none !important;*/
+/*}*/
+

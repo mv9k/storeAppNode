@@ -1,0 +1,40 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Welcome to storeApp!</h1>
+  </ion-header-bar>
+  <ion-content style="text-align: center;">
+      <ion-slide-box on-slide-changed="slideHasChanged($index)">
+        <ion-slide>
+          <br>
+        <img ng-src="templates/infoImages/img01.png" class="infoImg">
+        <hr>
+        <p>Use the Account tab to create an account or sign in with your Google account. Once you're signed in, you can add tags to search for and/or block in the Shop tab.</p>
+        <br>
+        <br>
+        <br>
+      </ion-slide>
+      <ion-slide>
+        <br>
+        <img ng-src="templates/infoImages/img02.png" class="infoImg">
+        <hr>
+        <p>Use the Shop tab to search for specific products or to search by your categories/filters you set in your Account tab. To add a product to your favourites (listed on the Favs tab), simply
+        slide the product to the left to reveal the Fav button.</p>
+        <br>
+        <br>
+        <br>
+      </ion-slide>
+      <ion-slide>
+        <br>
+        <img ng-src="templates/infoImages/img03.png" class="infoImg">
+        <hr>
+        <p>Use the Favs tab to manage your favourite items. To remove an item, just slide it to the left and click the X button.</p>
+        <br>
+        <br>
+      </ion-slide>
+    </ion-slide-box>
+
+    <button class="button button-balanced buyButton" ng-click="closeModal()">
+      <span>Get started!</span>
+    </button>
+  </ion-content>
+</ion-modal-view>

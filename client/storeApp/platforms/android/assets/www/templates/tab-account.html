@@ -1,0 +1,93 @@
+<ion-view view-title="Store App" style="text-align: center; background-color: lightgrey">
+  <ion-nav-buttons side="secondary">
+    <button class="button" ng-click="openModal()">
+      <i class="ion ion-information-circled infoIcon"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+    <div ng-if="!ac.isLoggedIn">
+      <ng-form>
+        <div class="bord">
+          <h1>Log in</h1>
+          <span style="color: red" id="err"></span>
+          <div class="list" id="loginDiv">
+          <label class="item item-input txtBord item-floating-label" id="emailBox">
+            <span class="input-label" id="emailInput">Email</span>
+            <input class="txtBord emailReq" type="email" placeholder="Email" ng-model="ac.email"/>
+          </label>
+          <br>
+            <label class="item item-input txtBord item-floating-label" id="passBox">
+              <span class="input-label">Password</span>
+              <input class="txtBord passReq" type="password" placeholder="Password" ng-model="ac.password"/>
+            </label>
+          </div>
+          <button class="button button-block button-positive" ng-click="ac.logIn()">
+            Log in
+          </button>
+          <button class="button button-block button-assertive" ng-click="ac.googleLogin()">
+            Sign in with Google
+          </button>
+          <a class="button button-clear button-positive">
+            Forgot Password?
+          </a>
+          <button class="button button-block button-outline button-calm" ng-click="ac.createAcc()">
+            Create an Account
+          </button>
+        </div>
+      </ng-form>
+    </div>
+    <div ng-if="ac.isLoggedIn">
+      <h3>
+        Welcome {{ac.validatedEmail}}!
+      </h3>
+      <img ng-src="{{ac.profileImg}}" class="profileImg">
+      <br>
+      <br>
+      <div class="bord">
+        <br>
+        <div ng-if="ac.emptyCat">Looks like you havent set up your preferred categories! Enter your categories in the text input below.</div>
+        <br>
+        <!--<button id="toggleCat" class="button button-block button-positive" ng-click="ac.toggleCat()">Show Categories</button>-->
+        <div>
+          <form ng-submit="ac.addCategory()">
+            <label class="item item-input newCategoryText" id="newCategoryInput">
+              <input type="text" placeholder="New Category" class="newCategoryText" ng-model="ac.newCategory"/>
+            </label>
+          </form>
+          <ion-list>
+            <ion-item class="item-remove-animate categoryItem" ng-repeat="cat in ac.categories.slice().reverse()" type="item-text-wrap">
+              <p>{{cat.key}}</p>
+              <ion-option-button class="button-assertive" ng-click="ac.removeCategory(cat.id)">
+                Delete
+              </ion-option-button>
+              <ion-option-button class="button-calm" ng-click="ac.blockCategory(cat.id)">
+                Block
+              </ion-option-button>
+            </ion-item>
+          </ion-list>
+        </div>
+        <button id="toggleBlockCat" class="button button-block button-balanced" ng-click="ac.toggleBlockedCat()">Blocked Categories</button>
+        <div ng-show="ac.showBlockedCat">
+          <form ng-submit="ac.addBlockedCategory()">
+            <label class="item item-input newCategoryText" id="newBlockedCategoryInput">
+              <input type="text" placeholder="New Category" class="newCategoryText" ng-model="ac.newBlockedCategory"/>
+            </label>
+          </form>
+          <ion-list>
+            <ion-item class="item-remove-animate categoryItem" ng-repeat="cat in ac.blockedCategories.slice().reverse()" type="item-text-wrap">
+              <p>{{cat.key}}</p>
+              <ion-option-button class="button-assertive" ng-click="ac.removeBlockedCategory(cat.id)">
+                Delete
+              </ion-option-button>
+            </ion-item>
+          </ion-list>
+      </div>
+      <div>
+        <button class="button button-block button-assertive" ng-click="ac.signOut()">Log Out</button>
+      </div>
+    </div>
+    </div>
+  </ion-content>
+</ion-view>
+
+<script src="js/formValidation/signIn.js"></script>

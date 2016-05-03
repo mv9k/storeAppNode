@@ -1,0 +1,27 @@
+<ion-view view-title="Favs" style="text-align: center;">
+  <ion-content>
+    <!--<button class="button button-block button-outline button-calm" ng-click="fc.getFavs()">
+      Reload
+    </button>-->
+    <ion-list>
+    <ion-item ng-repeat="product in fc.favsArray track by $index" class="nga-default nga-fade">
+      <div class="animated pulse">
+      <div class="productTitle"><h3>{{product.name}}</h3></div>
+      <br>
+      <img ng-src="{{product.mediumImage}}" class="itemImg"><br>
+      <button class="button button-balanced buyButton" ng-click="fc.addToCart(product)">
+        <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
+      </button>
+      <button class="button button-calm">
+        <span class="productDetails"> Details </span>
+      </button>
+
+      <ion-option-button class="button-stable delOptionButton" ng-click="fc.remFav(product)"><i class="ion-close largerIcon"></i></ion-option-button>
+      <br>
+      <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
+      <!--<p>{{product.shortDescription}}</p>-->
+      </div>
+    </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
