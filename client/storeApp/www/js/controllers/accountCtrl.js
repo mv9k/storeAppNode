@@ -124,6 +124,7 @@
             ac.isLoggedIn=true;
             ac.validatedEmail = ac.email;
             ac.thisUser = authData;
+            userService.storeUser(authData);
             ac.profileImg=authData.password.profileImageURL;
             if(storage[authData.uid]!==undefined){
               if(storage[authData.uid].keywords!==undefined){

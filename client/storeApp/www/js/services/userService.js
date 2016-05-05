@@ -58,36 +58,28 @@ function userService($http){
       }
     }
     if(!invalid){
-      console.log("I wonder if we're updating FireBase...");
+      //console.log("I wonder if we're updating FireBase...");
       us.favs.push(fav);
       us.favNames.push(fav.name);
       updateFireBase();
     }else{
-      console.log("Why didn't we update FireBase? ;(")
+      //console.log("Firebase wasn't updated")
     }
   }
   function getFavs(){
     var favs=[];
     var id = us.usedGoogle?us.thisUser.id:us.thisUser.uid;
 
-    $http.get("http://storeappnode-62710.onmodulus.net/favs"+id)
+    //Calling favorites
+    $http.get("http://storeappnode-62710.onmodulus.net/favs/"+id)
       .then(function(data){
-      favs = data.split("*");
+        //console.log(data.data[0].favs);
+        favs = JSON.parse(data.data[0].favs);
+        console.log(favs);
+        us.favs=favs;
     }, function(err){
       console.log(err);
     });
-    //ref.on("value", function(keys){
-    //  var id = us.usedGoogle?us.thisUser.id:us.thisUser.uid;
-    //  if(keys.val().users[id]!==undefined){
-    //    favs=keys.val().users[id].favs;
-    //    //console.log("Firebase says the favs for this account are: ", keys.val().users[us.thisUser.uid]);
-    //  }else{
-    //  }
-    //}, function(errorObject){
-    //  console.log("The read failed: " + errorObject.code);
-    //});
-    //console.log("This message is to distinguish this console.log", favs);
-    return favs;
   }
 
   function removeFav(id){
@@ -95,6 +87,7 @@ function userService($http){
     for(var i=0;i<us.favs.length;i++){
       if(us.favs[i]==id){
         us.favs.splice(i, 1);
+        us.favNames.splice(i, 1);
       }
     }
     updateFireBase();
@@ -114,7 +107,9 @@ function userService($http){
   }
 
   function updateFireBase(){
-    console.log("Updating FireBase");
+    var id = us.usedGoogle?us.thisUser.id:us.thisUser.uid;
+
+    //console.log("Updating FireBase");
     var fireBaseObj={};
     var dup=[];
     for(var i=0;i<us.blockedKeys.length;i++){
@@ -131,7 +126,7 @@ function userService($http){
         if(!dup.split(" ").test(reg)){
           dup.push(us.favs[i].itemId);
         }else{
-          console.log("We got here");
+          //console.log("We got here");
           us.favs.splice(i, 1);
           i--;
         }
@@ -140,13 +135,15 @@ function userService($http){
 
     //Updating PostGres
     $http.post("http://storeappnode-62710.onmodulus.net/postfavs", {
-      id: us.thisUser.id,
+      id: id,
       favs: us.favNames
     }).then(function(data){
       console.log("Successfully stored favorites")
     }, function(err){
       console.log(err);
     });
+
+
 
     us.usedGoogle?fireBaseObj[us.thisUser.id]={keywords: us.keys, blockedKeywords: us.blockedKeys, favs: us.favNames}:fireBaseObj[us.thisUser.uid]={keywords: us.keys, blockedKeywords: us.blockedKeys, favs: us.favNames};
     usersRef.update(fireBaseObj);

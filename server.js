@@ -19,296 +19,70 @@ app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 app.get('/favs/:id', function(req, res) {
 	var id=req.params.id;
-	res.end(id);
+	getFavsById(id, res);
 });
 
 app.post('/postfavs', function(req, res) {
-	var favs=req.body.favs.join('*');
+	var favs=JSON.stringify(req.body.favs);
 	var id= req.body.id;
 
-	createFav(favs, id, res);
+	updateFav(favs, id, res);
+	console.log('updating database of favs');
 });
 
-app.delete('/delfavs/:id/:fav', function(req, res) {
-	var fav=req.params.fav;
-	var id =req.params.id;
-});
-
-//app.('/updatefavs/:id/:fav', function(req, res) {
-//	var fav=req.params.fav;
-//	var id =req.params.id;
-//});
-
-function createFav(favs, id, res) {
+function updateFav(favs, id, res) {
 	pg.connect(conString, function(err, client, done) {
 		if (err) {
 			return console.error('error fetching client from pool', err);
 		}
 		client.query(
-			'insert into users (id, favs) values ($1, $2)',
+			'insert into users (id, favs) values ($1, $2) ON CONFLICT on constraint id_check do update set favs = $2',
 			[id, favs],
 			function(err, result) {
 				done();
-
 				if (err) {
 					return console.error('error running query', err);
 				}
-
 				console.log(result.rows);
-
 				res.json(result.rows);
 			});
 	});
 }
 
+function getFavsById(id, res) {
+	pg.connect(conString, function(err, client, done) {
+		if (err) {
+			return console.error('error fetching client from pool', err);
+		}
+		client.query('SELECT * from users where id = $1', [id], function(err, result) {
+			done();
+			if (err) {
+				return console.error('error running query', err);
+			}
+			console.log(result.rows);
+			res.json(result.rows);
+		});
+	});
+}
 
-//app.get('/user/:id', function(req, res) {
-//	getStudentById(req.params.id, res);
-//});
-//
-//app.put('/fav/:id', function(req, res) {
-//	var classId = req.body.classId;
-//	var grade = req.body.grade;
-//
-//	gradeEditAdd(req.params.id, classId, grade, res);
-//
-//});
-//
-//app.delete('/user/:id', function(req, res) {
-//	delStudentById(req.params.id, res);
-//});
-//
-//app.delete('/fav/:id', function(req, res) {
-//	var classId = req.body.classId;
-//	delGrade(req.params.id, classId, res);
-//});
-//
-//app.post('/users', function(req, res) {
-//	//var id = getNewId();
-//	var favs = req.body.favs;
-//	console.log(favs);
-//
-//	insertStudent(favs, res);
-//
-//	//res.json(req.body);
-//});
-//
-//app.post('/class', function(req, res) {
-//	var id = getNewId();
-//	var name = req.body.name;
-//	console.log(id, name);
-//
-//	insertClass(id, name, res);
-//
-//	//res.json(req.body);
-//});
+function deleteFavsById(id, res) {
+	pg.connect(conString, function(err, client, done) {
+		if (err) {
+			return console.error('error fetching client from pool', err);
+		}
+		client.query('DELETE from student where id = $1', [id], function(err, result) {
+			done();
 
+			if (err) {
+				return console.error('error running query', err);
+			}
 
+			console.log(result.rows);
 
-//function listAllStudents(res) {
-//	pg.connect(conString, function(err, client, done) {
-//		if (err) {
-//			return console.error('error fetching client from pool', err);
-//		}
-//		client.query('SELECT * from student', function(err, result) {
-//			done();
-//
-//			if (err) {
-//				return console.error('error running query', err);
-//			}
-//
-//			console.log(result.rows);
-//
-//			res.json(result.rows);
-//		});
-//	});
-//}
-//
-//function getStudentsInClass(id, res) {
-//	pg.connect(conString, function(err, client, done) {
-//		if (err) {
-//			return console.error('error fetching client from pool', err);
-//		}
-//		client.query('SELECT name FROM student, grade WHERE class_id = $1 AND id = student_id', [id], function(err, result) {
-//			done();
-//
-//			if (err) {
-//				return console.error('error running query', err);
-//			}
-//
-//			console.log(result.rows);
-//
-//			res.json(result.rows);
-//		});
-//	});
-//}
-//
-//function getStudentGradesInClass(id, res) {
-//	pg.connect(conString, function(err, client, done) {
-//		if (err) {
-//			return console.error('error fetching client from pool', err);
-//		}
-//		client.query('SELECT name, grade FROM student, grade WHERE class_id = $1 AND id = student_id', [id], function(err, result) {
-//			done();
-//
-//			if (err) {
-//				return console.error('error running query', err);
-//			}
-//
-//			console.log(result.rows);
-//
-//			res.json(result.rows);
-//		});
-//	});
-//}
-//
-//function listAllClasses(res) {
-//	pg.connect(conString, function(err, client, done) {
-//		if (err) {
-//			return console.error('error fetching client from pool', err);
-//		}
-//		client.query('SELECT * from class', function(err, result) {
-//			done();
-//
-//			if (err) {
-//				return console.error('error running query', err);
-//			}
-//
-//			console.log(result.rows);
-//
-//			res.json(result.rows);
-//		});
-//	});
-//}
-//
-//function delGrade (id, classId, res) {
-//	pg.connect(conString, function(err, client, done) {
-//		if (err) {
-//			return console.error('error fetching client from pool', err);
-//		}
-//		client.query('DELETE from grade where student_id = $1 AND class_id = $2', [id, classId], function(err, result) {
-//			done();
-//
-//			if (err) {
-//				return console.error('error running query', err);
-//			}
-//
-//			console.log(result.rows);
-//
-//			res.json(result.rows);
-//		});
-//	});
-//}
-//
-//function delStudentById (id, res) {
-//	pg.connect(conString, function(err, client, done) {
-//		if (err) {
-//			return console.error('error fetching client from pool', err);
-//		}
-//		client.query('DELETE from student where id = $1', [id], function(err, result) {
-//			done();
-//
-//			if (err) {
-//				return console.error('error running query', err);
-//			}
-//
-//			console.log(result.rows);
-//
-//			res.json(result.rows);
-//		});
-//	});
-//}
-//
-//function delClassById (id, res) {
-//	pg.connect(conString, function(err, client, done) {
-//		if (err) {
-//			return console.error('error fetching client from pool', err);
-//		}
-//		client.query('DELETE from class where id = $1', [id], function(err, result) {
-//			done();
-//
-//			if (err) {
-//				return console.error('error running query', err);
-//			}
-//
-//			console.log(result.rows);
-//
-//			res.json(result.rows);
-//		});
-//	});
-//}
-//
-//function gradeEditAdd(id, classId, grade, res) {
-//	pg.connect(conString, function(err, client, done) {
-//		if (err) {
-//			return console.error('error fetching client from pool', err);
-//		}
-//		client.query(
-//			'insert into grade (student_id, class_id, grade) values ($1, $2, $3) ON CONFLICT on constraint student_class do update set grade = $3',
-//			[id, classId, grade],
-//
-//			function(err, result) {
-//				done();
-//
-//				if (err) {
-//					return console.error('error running query', err);
-//				}
-//
-//				console.log(result.rows);
-//
-//				res.json(result.rows);
-//			});
-//	});
-//}
-//
-
-//
-//function insertClass(id, name, res) {
-//	pg.connect(conString, function(err, client, done) {
-//		if (err) {
-//			return console.error('error fetching client from pool', err);
-//		}
-//		client.query(
-//			'insert into class (id, name) values ($1, $2)',
-//			[id, name],
-//			function(err, result) {
-//				done();
-//
-//				if (err) {
-//					return console.error('error running query', err);
-//				}
-//
-//				console.log(result.rows);
-//
-//				res.json(result.rows);
-//			});
-//	});
-//}
-//
-//function getStudentById(id, res) {
-//	pg.connect(conString, function(err, client, done) {
-//		if (err) {
-//			return console.error('error fetching client from pool', err);
-//		}
-//		client.query('SELECT * from student where id = $1', [id], function(err, result) {
-//			done();
-//
-//			if (err) {
-//				return console.error('error running query', err);
-//			}
-//
-//			console.log(result.rows);
-//
-//			res.json(result.rows);
-//		});
-//	});
-//}
-//
-//function getNewId() {
-//	return uuid.v4();
-//}
-
-//console.log(getNewId());
+			res.json(result.rows);
+		});
+	});
+}
 
 var port = process.env.PORT || 3343;
 app.listen(port, function() {

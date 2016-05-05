@@ -34,19 +34,19 @@
       fs.remFav(product);
     }
 
-    function getFavs(){
+    function getFavs(favsArg){
       if(userService.getLogInState()){
-        var userFavs = userService.getFavs();
+        var userFavs = favsArg;
       }
-      //console.log("Here are the favorites for this account", userFavs);
+      console.log("Here are the favorites for this account", userFavs);
       if(userFavs!==undefined){
         var iterations=userFavs.length;
-        //console.log("Init iterations: " + iterations);
+        console.log("Init iterations: " + iterations);
         $ionicLoading.show();
       }
       var count=0;
       function retrieve(){
-        //console.log("Beginning query for: ", userFavs[count]);
+        console.log("Beginning query for: ", userFavs[count]);
         Products.get(userFavs[count])
           .then(function(data){
             fs.addFav(data.data.items[0]);
@@ -69,16 +69,17 @@
       }
       if(userService.getLogInState()&&iterations!==undefined&&iterations>0){
         console.log("started");
-        retrieve();retrieve();
+        retrieve();
       }else if(!userService.getLogInState()){
         alert("Please sign in to use this feature");
       }
-      Products.get();
     }
     $scope.$on("$ionicView.beforeEnter",function(){
       $timeout(function(){
         if(userService.getLogInState()){
-          getFavs();
+          userService.getFavs();
+          var theFavs = userService.favs;
+          getFavs(theFavs);
         }
       });
     });
