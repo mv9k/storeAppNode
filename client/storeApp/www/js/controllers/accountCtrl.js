@@ -11,9 +11,7 @@
   function acctCont($scope, $ionicPopup, userService, $ionicModal, $http){
 
     var ac = this;
-    //Commit worked #1
 
-    //Firebase URL
     var ref = new Firebase("https://storeappformatc.firebaseio.com");
     var usersRef = ref.child("users");
 
@@ -64,6 +62,7 @@
     ac.removeBlockedCategory=removeBlockedCat;
     ac.toggleCat=showCategories;
     ac.toggleBlockedCat=showBlockedCategories;
+    ac.sendGooglePassport=sendGooglePassport;
 
     //Create a new account with FireBase
     function createFireAccount(){
@@ -331,6 +330,9 @@
       usersRef.update(fireBaseObj);
     }
 
+    function sendGooglePassport(){
+      $http.get("/auth/google");
+    }
 
     /////////////////////// Modal! /////////////////////////
 
